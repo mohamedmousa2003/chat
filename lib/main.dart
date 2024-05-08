@@ -1,3 +1,5 @@
+import 'package:chat/Shared/styles/themeing.dart';
+import 'package:chat/pages/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,6 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ApplicationTheme.light,
+      home: LoginScreen(),
     );
   }
 }

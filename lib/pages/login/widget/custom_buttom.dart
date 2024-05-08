@@ -11,6 +11,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+
     return InkWell(
       onTap: onTap,
       child: Container(

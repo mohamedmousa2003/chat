@@ -1,5 +1,6 @@
 import 'package:chat/Shared/styles/themeing.dart';
 import 'package:chat/pages/login/login_screen.dart';
+import 'package:chat/pages/register/register_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +16,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ApplicationTheme.light,
-      home: LoginScreen(),
+      initialRoute: LoginScreen.routeName,
+      routes: {
+        LoginScreen.routeName: (context) => LoginScreen(),
+        RegisterScreen.routeName: (context) => RegisterScreen(),
+      },
     );
   }
 }

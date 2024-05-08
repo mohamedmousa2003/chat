@@ -1,14 +1,13 @@
-import 'package:chat/pages/login/widget/custom_buttom.dart';
-import 'package:chat/pages/register/register_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../Shared/styles/component/constants.dart';
 import '../../Shared/styles/component/widget/tap_text_form.dart';
+import '../login/widget/custom_buttom.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  static String routeName = "register";
 
-  static String routeName = "login_screen";
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class LoginScreen extends StatelessWidget {
           children: [
             SizedBox(height: mediaQuery.height * 0.26),
             Text(
-              login,
+              register,
               style: theme.textTheme.bodyLarge,
             ),
             const SizedBox(height: 20),
@@ -43,22 +42,22 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(height: 20),
             CustomButton(
               onTap: () {},
-              title: "LOGIN",
+              title: register,
             ),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'don\'t have an account ?  ',
+                  'already have an account?   ',
                   style: theme.textTheme.bodySmall,
                 ),
                 InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, RegisterScreen.routeName);
+                      Navigator.pop(context);
                     },
                     child: Text(
-                      register,
+                      login,
                       style: theme.textTheme.bodyMedium,
                     ))
               ],

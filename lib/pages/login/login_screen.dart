@@ -1,9 +1,8 @@
 import 'package:chat/pages/login/widget/custom_buttom.dart';
 import 'package:chat/pages/register/register_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../../Shared/styles/component/constants.dart';
-import '../../Shared/styles/component/widget/tap_text_form.dart';
+import '../../Shared/component/constants.dart';
+import '../../Shared/component/widget/tap_text_form.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

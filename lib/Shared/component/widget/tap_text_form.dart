@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../colors.dart';
+import '../../styles/colors.dart';
 
 class TapTextForm extends StatelessWidget {
   TextEditingController controller;

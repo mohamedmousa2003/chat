@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../Shared/styles/component/constants.dart';
-import '../../Shared/styles/component/widget/tap_text_form.dart';
+import '../../Shared/component/constants.dart';
+import '../../Shared/component/widget/tap_text_form.dart';
 import '../login/widget/custom_buttom.dart';
 
 class RegisterScreen extends StatelessWidget {

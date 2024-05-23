@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../Shared/component/constants.dart';
@@ -7,13 +8,15 @@ import '../login/widget/custom_buttom.dart';
 class RegisterScreen extends StatelessWidget {
   static String routeName = "register";
 
-  const RegisterScreen({super.key});
+  RegisterScreen({super.key});
+
+  var loginController = TextEditingController();
+  var passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var loginController = TextEditingController();
-    var passController = TextEditingController();
+
     var mediaQuery = MediaQuery.of(context).size;
     return Container(
       decoration: const BoxDecoration(
@@ -41,7 +44,19 @@ class RegisterScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             CustomButton(
-              onTap: () {},
+              onTap: () async {
+                try {
+                  await registerUser();
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'weak-password') {
+                    showSnaack(context, "The password provided is too weak.");
+                  } else if (e.code == 'email-already-in-use') {
+                    showSnaack(
+                        context, "The account already exists for that email.");
+                  }
+                }
+                showSnaack(context, "success.");
+              },
               title: register,
             ),
             const SizedBox(height: 20),
@@ -65,6 +80,22 @@ class RegisterScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void showSnaack(BuildContext context, String massage) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+      massage,
+      style: TextStyle(color: Colors.white),
+    )));
+  }
+
+  Future<void> registerUser() async {
+    final credential =
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: loginController.text,
+      password: passController.text,
     );
   }
 }

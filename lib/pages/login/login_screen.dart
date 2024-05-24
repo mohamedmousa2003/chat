@@ -1,19 +1,22 @@
 import 'package:chat/pages/login/widget/custom_buttom.dart';
 import 'package:chat/pages/register/register_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import '../../Shared/component/constants.dart';
 import '../../Shared/component/widget/tap_text_form.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
 
   static String routeName = "login_screen";
+  var loginController = TextEditingController();
+  var passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var loginController = TextEditingController();
-    var passController = TextEditingController();
+
     var mediaQuery = MediaQuery.of(context).size;
     return Container(
       decoration: const BoxDecoration(
@@ -41,7 +44,20 @@ class LoginScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             CustomButton(
-              onTap: () {},
+              onTap: () async {
+                try {
+                  final credential = await FirebaseAuth.instance
+                      .signInWithEmailAndPassword(
+                          email: loginController.text,
+                          password: passController.text);
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'user-not-found') {
+                    print('No user found for that email.');
+                  } else if (e.code == 'wrong-password') {
+                    print('Wrong password provided for that user.');
+                  }
+                }
+              },
               title: "LOGIN",
             ),
             const SizedBox(height: 20),

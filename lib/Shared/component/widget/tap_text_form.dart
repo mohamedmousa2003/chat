@@ -4,9 +4,15 @@ import '../../styles/colors.dart';
 
 class TapTextForm extends StatelessWidget {
   TextEditingController controller;
+  final FormFieldValidator<String> validator;
   String label;
 
-  TapTextForm({super.key, required this.controller, required this.label});
+  TapTextForm({
+    super.key,
+    required this.controller,
+    required this.label,
+    required this.validator,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +20,7 @@ class TapTextForm extends StatelessWidget {
     return TextFormField(
       controller: controller,
       style: theme.textTheme.bodyMedium,
-      validator: (value) {
-        if (value == null || value.trim().isEmpty) {
-          return "please enter your task";
-        }
-        return null;
-      },
+      validator: validator,
       cursorColor: white,
       decoration: InputDecoration(
         //hintText: local.enter_your_task,
